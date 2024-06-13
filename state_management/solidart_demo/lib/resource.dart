@@ -33,43 +33,71 @@ class _ResourceExampleState extends State<ResourceExample> {
 
   @override
   Widget build(BuildContext context) {
-    // A signal builder is required in order to listen to the resource changes.
-    return SignalBuilder(
-      builder: (_, __) {
-        return Column(
-          children: [
-            ListTile(
-              title: const Text('Resource with Future'),
-              subtitle: resourceWithFuture().on(
-                ready: (data) => Text('Data: $data'),
-                error: (error, stacktrace) {
-                  return Text('Error: $error');
-                },
-                loading: () => const Text('Loading...'),
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.refresh),
-                onPressed: () => resourceWithFuture.refresh(),
-              ),
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Resource with Stream'),
-              subtitle: resourceWithStream().on(
-                ready: (data) => Text('Data: $data'),
-                error: (error, stacktrace) {
-                  return Text('Error: $error');
-                },
-                loading: () => const Text('Loading...'),
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.refresh),
-                onPressed: () => resourceWithStream.refresh(),
-              ),
-            ),
-          ],
-        );
-      },
+    return Column(
+      children: [
+        // A signal builder is required in order to listen to the resource changes.
+        SignalBuilder(
+          builder: (_, __) {
+            return Column(
+              children: [
+                Card.outlined(
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ListTile(
+                        title: const Text('Resource - Future'),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: () => resourceWithFuture.refresh(),
+                        ),
+                      ),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: resourceWithFuture().on(
+                          ready: (data) => Text('Data: $data'),
+                          error: (error, stacktrace) {
+                            return Text('Error: $error');
+                          },
+                          loading: () => const Text('Loading...'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card.outlined(
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ListTile(
+                        title: const Text('Resource - Stream'),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: () => resourceWithStream.refresh(),
+                        ),
+                      ),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: resourceWithStream().on(
+                          ready: (data) => Text('Data: $data'),
+                          error: (error, stacktrace) {
+                            return Text('Error: $error');
+                          },
+                          loading: () => const Text('Loading...'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
     );
+    // A signal builder is required in order to listen to the resource changes.
   }
 }

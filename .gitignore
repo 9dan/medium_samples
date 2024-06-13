@@ -1,7 +1,10 @@
 
-.idea/medium_samples.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/libraries/Dart_SDK.xml
-.idea/libraries/Dart_Packages.xml
+**/.idea/medium_samples.iml
+**/.idea/misc.xml
+**/.idea/modules.xml
+**/.idea/vcs.xml
+**/.idea/libraries/Dart_SDK.xml
+**/.idea/libraries/Dart_Packages.xml
+**/.DS_Store
+**/.idea
+**/.idea/workspace.xml

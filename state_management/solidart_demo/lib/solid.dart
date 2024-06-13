@@ -12,34 +12,40 @@ class _SolidExampleState extends State<SolidExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Solid(
-      providers: [
-        // This provider will hold the current counter value.
-        // The type of the signal MUST be defined, in this case, it's an integer.
-        Provider<Signal<int>>(create: () => Signal(0)),
-      ],
-      builder: (context) {
-        return SignalBuilder(
-          builder: (_, __) {
-            // Getting the current counter value by using context.get
-            // Context.get will find the FIRST provider of the given type
-            final c = context.get<Signal<int>>().value;
-            return Column(
-              children: [
-                Text(
-                  'SolidExample: $c',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                ElevatedButton(
-                  // Increment the counter value by 1
+    return Card.outlined(
+      clipBehavior: Clip.antiAlias,
+      child: Solid(
+        providers: [
+          // The subtree will have access to this signal by using context.get
+          Provider<Signal<int>>(create: () => Signal(0)),
+        ],
+        builder: (context) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ListTile(
+                title: const Text('Solid'),
+                trailing: IconButton(
                   onPressed: () => context.get<Signal<int>>().value++,
-                  child: const Text('Increment'),
+                  icon: const Icon(Icons.add_rounded),
                 ),
-              ],
-            );
-          },
-        );
-      },
+              ),
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: SignalBuilder(
+                  builder: (_, __) {
+                    // Getting the current counter value by using context.get
+                    // Context.get will find the FIRST provider of the given type
+                    final value = context.get<Signal<int>>().value;
+                    return Text('Value: $value');
+                  },
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

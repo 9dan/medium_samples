@@ -9,7 +9,6 @@ class SignalExample extends StatefulWidget {
 }
 
 class _SignalExampleState extends State<SignalExample> {
-
   // This count will call an update on its listeners every time it changes.
   final counter = Signal(0);
 
@@ -24,31 +23,34 @@ class _SignalExampleState extends State<SignalExample> {
 
     // Creating the effect
     printEffect = Effect((_) {
-      debugPrint('SignalExample: ${counter.value}');
+      debugPrint('Signal value: ${counter.value}');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SignalBuilder(
-      builder: (_, __) {
-        // Calling counter.value inside a builder of a SignalBuilder is
-        // another way to register a listener, so the builder will be
-        // called every time our counter value changes.
-        final c = counter.value;
-        return Column(
-          children: [
-            Text(
-              'SignalExample: $c',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            ElevatedButton(
+    return Card.outlined(
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ListTile(
+            title: const Text('Signal'),
+            trailing: IconButton(
               onPressed: () => counter.value++,
-              child: const Text('Increment'),
+              icon: const Icon(Icons.add_rounded),
             ),
-          ],
-        );
-      },
+          ),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            // A signal builder is required in order to listen to the signal changes.
+            child: SignalBuilder(builder: (_, __) {
+              return Text('Value: ${counter.value}');
+            }),
+          ),
+        ],
+      ),
     );
   }
 }
