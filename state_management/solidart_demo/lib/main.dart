@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_solidart/flutter_solidart.dart';
 import 'package:solidart_demo/resource.dart';
 import 'package:solidart_demo/signal.dart';
 import 'package:solidart_demo/solid.dart';
