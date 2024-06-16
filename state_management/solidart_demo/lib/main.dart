@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solidart_demo/resource.dart';
-import 'package:solidart_demo/signal.dart';
-import 'package:solidart_demo/solid.dart';
+import 'package:solidart_demo/pages/resource.dart';
+import 'package:solidart_demo/pages/signal.dart';
+import 'package:solidart_demo/pages/solid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,13 +60,28 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Solidart Demo')),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SignalExample(),
-            ResourceExample(),
-            SolidExample(),
+            ListTile(
+              title: const Text('Signal'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SignalPage()));
+              },
+            ),
+            ListTile(
+              title: const Text('Resource'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ResourcePage()));
+              },
+            ),
+            ListTile(
+              title: const Text('Solid'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SolidPage()));
+              },
+            ),
           ],
         ),
       ),
