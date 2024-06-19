@@ -2,7 +2,7 @@
 
 Project used to provide working examples on how to use environment variables in Flutter.
 
-[Medium Article](https://medium.com/@ninedan)
+[Medium Article](https://medium.com/p/e0614e3449e5)
 
 ### Run using `--dart-define`:
 
