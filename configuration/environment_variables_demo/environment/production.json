@@ -1,0 +1,8 @@
+{
+  "name": "PROD",
+  "server_url": "https://mywonderfulserver.production.com",
+  "api_key": "myproductionapikey",
+  "boolean_value": false,
+  "number_value": 42,
+  "only_prod_value": "production only value"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "DEV",
+  "server_url": "https://mywonderfulserver.development.com",
+  "api_key": "mydevelopmentapikey",
+  "boolean_value": true,
+  "number_value": 42,
+  "only_dev_value": "development only value"
+}
